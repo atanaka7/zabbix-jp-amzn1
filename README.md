@@ -13,11 +13,13 @@ Amazon Linux用Zabbix RPM
 必要なRPM
 ---------
 
-fpingやiksemel、iksemel-develのパッケージは、ZABBIX-JPで公開しているRHEL5用をご利用ください。
+fpingやiksemel、iksemel-develのパッケージは、ZABBIX-JPで公開しているRHEL6用をご利用ください。
 
-2011/05/03現在、gnutlsのバージョンが上がってしまってZABBIX-JPで公開しているバージョンがインストールできない場合は、iksemel-1.4-1.amzn1.src.rpmを利用してRPMを作成して利用してみて下さい。
+iksemel、iksemel-develのパッケージは、epelのパッケージでも稼動可能のようです。
+fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、ZABBIX-JP版が必須です。
 
 ZABBIX-JPのRPMからの変更点
 --------------------------
 
-Amazon Linux用のOpenIPMI-libsが用意できていないため、IPMIは無効にしてあります。
+ここのディレクトリにあるバージョン1.8.8よりも前のSRPMでは、IPMIは無効にしてあります。
+必要に応じてSPECファイルを修正して有効にする必要があります。
