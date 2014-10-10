@@ -13,10 +13,10 @@ Amazon Linux用Zabbix RPM
 必要なRPM
 ---------
 
-fpingやiksemel、iksemel-develのパッケージは、ZABBIX-JPで公開しているRHEL6用をご利用ください。
+fpingやiksemel、iksemel-develのパッケージは、Zabbix SIAで公開しているRHEL6用をご利用ください。
 
 iksemel、iksemel-develのパッケージは、epelのパッケージでも稼動可能のようです。
-fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、ZABBIX-JP版が必須です。
+fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、Zabbix SIA版が必須です。
 
 ZABBIX-JPのRPMからの変更点
 --------------------------
@@ -24,7 +24,25 @@ ZABBIX-JPのRPMからの変更点
 ここのディレクトリにあるバージョン1.8.8よりも前のSRPMでは、IPMIは無効にしてあります。
 必要に応じてSPECファイルを修正して有効にする必要があります。
 
+RHEL 7仮対応について
+--------------------
+
+CentOS 7(RHEL 7互換)で動作確認を行っています。
+
+DBMSとしてMySQLの代わりにMariaDBを利用するようにしてみているのと、Apache HTTP Serverの2.4系に対応するようconfigファイルを追加しています。
+
+起動方法に関しては、Zabbixの各デーモンがsystemdからの呼び出しに対応していないようですので(2014/10/10現在)、CentOS 7にあるinit互換用の機能を利用して、serviceコマンドで起動/停止、chkconfigコマンドで自動起動などの設定を行ってください。
+
+ただし、シャットダウン時にmariadbとの依存関係を定義できていないので、大量のDBへのアクセスがzabbix_serverでキャッシュしていたような場合は破棄されてしまう可能性がありますのでご注意ください。
+
+また、CentOS 7でOSの再起動時に問題が発生していたので、Zabbix SIAのinit系ファイルに対して、起動時の/var/run/zabbixディレクトリチェックを追加しています。
+
 その他
 ------
 
 2.0.1に関しては、脆弱性が確認されているようです。対応済みの2.0.2が正式にリリースされましたので、RC版は削除いたしました。
+
+2.2.6-1、2.4.1-1は、Amazon Linux 2014.09公開後の物です。
+
+Amazon Linux 2014.09で、2.4.1-1を利用する際、Webインターフェースのセットアップウィザードが正常に機能しないことが確認されていますので、手動でファイル(/etc/zabbix/web/zabbix.conf.php)を作成して対応してください。(2014/10/10現在)
+
