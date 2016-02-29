@@ -13,10 +13,10 @@ Amazon Linux用Zabbix RPM
 必要なRPM
 ---------
 
-fpingやiksemel、iksemel-develのパッケージは、Zabbix SIAで公開しているRHEL6用をご利用ください。
+fpingやiksemel、iksemel-develのパッケージは、Zabbix LLCで公開しているRHEL6用をご利用ください。
 
 iksemel、iksemel-develのパッケージは、epelのパッケージでも稼動可能のようです。
-fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、Zabbix SIA版が必須です。
+fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、Zabbix LLC版か、バージョン3以降が必須です。
 
 ZABBIX-JPのRPMからの変更点
 --------------------------
@@ -29,11 +29,11 @@ RHEL 7対応について
 
 CentOS 7(RHEL 7互換)で動作確認を行っています。
 
-Zabbix SIAのパッケージがRHEL 7対応になったので、それを参考にしたZabbix 2.4.5用から、systemdに対応するようになりました。
+Zabbix LLCのパッケージがRHEL 7対応になったので、それを参考にしたZabbix 2.4.5用から、systemdに対応するようになりました。
 
 DBMSとしてMySQLの代わりにMariaDBを利用するようになっています。あと、Apache HTTP Serverの2.4系に対応するようconfigファイルを切り替えて利用するのが正式に組み込まれました。
 
-CentOS 7.1.1503でzabbix_serverが起動できないのは、RHEL 7.1のバグです。対策としては、Fedora 20や21のtrousersの修正されたパッケージを参考にして、trousersのパッケージを更新すると起動できるようになります。
+CentOS 7.1.1503でzabbix_serverが起動できないのは、RHEL 7.1のバグです。対策としては、yum updateを実行するなどして、trousersのパッケージを修正されたパッケージに更新するようにしてください。
 
 その他
 ------
@@ -46,4 +46,7 @@ CentOS 7.1.1503でzabbix_serverが起動できないのは、RHEL 7.1のバグ�
 Amazon Linux 2014.09で、2.4.1-1を利用する際、Webインターフェースのセットアップウィザードが正常に機能しないことが確認されていますので、手動でファイル(/etc/zabbix/web/zabbix.conf.php)を作成して対応してください。(2014/10/10現在)
 
 Amazon Linux 2015.03 と Zabbix 2.4.5の組み合わせであれば正常に稼働できています。(2015/05/27現在)
+
+Zabbix 3.0.1は、Amazon Linux 2015.09上で確認しました。PHPが5.6になっているので、/etc/php.ini内のalways_populate_raw_post_dataの値を-1に設定してください。
+Zabbix 3.0.1は、CentOS 6.7上でも確認しています。ただし、SMTP Authenticationが利用できないのと、PHP 5.4を利用できるようにするため、SCLを有効にしてphp54を利用する用にパッケージの依存関係を設定してありますのでご注意ください。(2016/02/29現在)
 
