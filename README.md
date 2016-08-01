@@ -50,3 +50,6 @@ Amazon Linux 2015.03 と Zabbix 2.4.5の組み合わせであれば正常に稼�
 Zabbix 3.0.1は、Amazon Linux 2015.09上で確認しました。PHPが5.6になっているので、/etc/php.ini内のalways_populate_raw_post_dataの値を-1に設定してください。
 Zabbix 3.0.1は、CentOS 6.7上でも確認しています。ただし、SMTP Authenticationが利用できないのと、PHP 5.4を利用できるようにするため、SCLを有効にしてphp54を利用する用にパッケージの依存関係を設定してありますのでご注意ください。(2016/02/29現在)
 
+Zabbix 3.0.4では、CentOS 6用の設定追加を止めました。
+必要となるPHPの環境に何を利用するかによってパッケージの依存関係も異なるので、Zabbix LLCが公開しているものと同様になっているはずです。(2016/08/01現在)
+
