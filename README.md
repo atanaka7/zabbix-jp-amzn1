@@ -14,6 +14,7 @@ Amazon Linux用Zabbix RPM
 ---------
 
 fpingやiksemel、iksemel-develのパッケージは、Zabbix LLCで公開しているRHEL6用をご利用ください。
+Amazon Linux 2の場合は、RHEL 7用を選択した方が良いでしょう。
 
 iksemel、iksemel-develのパッケージは、epelのパッケージでも稼動可能のようです。
 fpingは、zabbix_server.confでSourceIPを指定して利用する場合は、Zabbix LLC版か、バージョン3以降が必須です。
@@ -52,4 +53,7 @@ Zabbix 3.0.1は、CentOS 6.7上でも確認しています。ただし、SMTP Au
 
 Zabbix 3.0.4では、CentOS 6用の設定追加を止めました。
 必要となるPHPの環境に何を利用するかによってパッケージの依存関係も異なるので、Zabbix LLCが公開しているものと同様になっているはずです。(2016/08/01現在)
+
+Zabbix 3.4.4-2で、Amazon Linux 2への対応を行ってみました。(2017/12/22現在)
+fpingやiksemelなどは、RHEL 7用のSRPMからビルドすることをお勧めします。
 
